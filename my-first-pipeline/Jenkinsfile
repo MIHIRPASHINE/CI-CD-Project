@@ -1,5 +1,5 @@
-pipeline {    #
-  agent {
+pipeline {    
+  agent {     
     docker { image 'node:16-alpine' }
   }
   stages {
@@ -10,3 +10,36 @@ pipeline {    #
     }
   }
 }
+
+
+#######################################################################################################################################################################
+
+# pipeline : This keyword is used to define the beginning of the Pipeline script. Everything that defines what your pipeline will do is contained within this block.
+
+# agent : The agent directive specifies where the entire Pipeline, or a specific stage, will execute in the Jenkins environment. In this pipeline, the Pipeline is configured to run in a Docker container.
+
+# docker { image 'node:16-alpine' } : This specifies that the Pipeline should run on a Docker agent using the node:16-alpine image. 
+  node:16-alpine is a lightweight version of the Node.js 16 Docker image based on Alpine Linux. 
+  Using Docker agents allows you to run your build in a container environment that you can define through Docker images. 
+  This ensures that you have all the dependencies you need for your build without having to install them directly on the build agent.  
+
+# stages : This section is used to define a series of one or more stages that the Pipeline will execute. 
+  A stage is a logical unit of work that represents a part of the build process. For example, you might have stages for building, testing, and deploying your application.    
+
+# stage('Test') : Here, we define a single stage named Test. 
+  This is a label that will appear in the Jenkins UI to represent this part of the Pipeline. Each stage should have a descriptive name to make the pipeline easier to understand and debug.
+
+# steps : Within a stage, the steps block defines one or more steps that are to be executed in sequence. 
+  Steps are the smallest unit of work and are commands or actions that do the actual work of the stage.
+
+# sh 'node --version' : This step executes a shell command inside the Docker container specified by the agent. 
+  In this case, it's running node --version, which will output the version of Node.js that is installed in the node:16-alpine Docker image. 
+  This is a common way to verify that your environment is set up as expected before proceeding with more complex tasks like running tests or builds.
+
+#In summary, this Jenkins Pipeline script is configured to run in a Docker container using the Node.js 16 Alpine image. 
+It has a single stage named "Test" that executes a shell command to print the Node.js version. 
+This could be a preliminary step in a larger pipeline that involves testing a Node.js application.
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
