@@ -32,7 +32,7 @@ Back-end Stage:
 
 agent: Specifies a Docker agent with the maven:3.8.1-adoptopenjdk-11 image.
 steps: Contains the commands to be executed in the sh 'mvn --version' step. This command checks the Maven version, which ensures that Maven is correctly set up in the Docker container.
-Front-end Stage:
 
+Front-end Stage:
 agent: Specifies a Docker agent with the node:16-alpine image.
 steps: Contains the commands to be executed in the sh 'node --version' step. This command checks the Node.js version, which ensures that Node.js is correctly set up in the Docker container.
