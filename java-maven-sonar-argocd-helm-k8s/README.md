@@ -2,7 +2,7 @@
 
 ![Screenshot 2023-03-28 at 9 38 09 PM](https://user-images.githubusercontent.com/43399466/228301952-abc02ca2-9942-4a67-8293-f76647b6f9d8.png)
 
-Sure, I can help you break down the CI/CD workflow displayed in the image. Let's go through each component step-by-step:
+Here is the break down of the CI/CD workflow displayed in the image. Let's go through each component step-by-step:
 
 1. Source Code:
    - The process begins with the source code, which is stored in a version control system (e.g., Git).
