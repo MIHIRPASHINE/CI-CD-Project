@@ -1,0 +1,18 @@
+Implemented CI-CD Pipeline using Jenkins as an Orchestrator, Docker Container as an agent and ArgoCD as a GitOps CD tool, to deploy the application on K8's Environment.
+
+In this Project, I have used Jenkins as a Continuous Integration tool and ArgoCD as a declarative continous delivery tool following GitOps delivery Model.
+Jenkins will make sure that the build is smooth, all the tests are executed and code quality is maintained and build image is created, while ArgoCD will ensure that the delivery and deployment is done on kubernetes.
+Jenkins will act as a orchestrator to implement the declarative jenkinsFile. 
+whenever there is a code commit in src code repository, jenkins Pipeline will be triggered using GitHub Webhooks.
+The pipeline specifies a Docker agent to run the pipeline jobs, It uses a custom Docker image, which contains Maven and other required tools for building the Java application. 
+As Part of build, Maven as build tool will build the src code into a deployment unit jar.file and perform unit tests.
+As to perform continous inspsection of code quality, Sonarqube will perform check if the code is matching with the compliance of organization, if the code have any security vulnerability and perform static code analysis.
+As a part of pipeline, once the sonar check is passed, docker image will be created with build number as a tag using docker file located in the project directory and pushed into the docker hub registery.
+Once the image artifact is ready with new version tag in container registery, script in the pipeline will automatically update the deployment manifest files in git repo with the new Docker image version tagged with the current build number. The script configures Git with user details, commits the changed deployment file, and pushes it to the specified Git repository using a GitHub token for authentication.
+This marks the completion of CI stages.
+Now starts the Continuous Delivery stage and I have used ArgoCD as continous delivery tool. ArgoCD is configured with github project directory and path of deployment.yml manifest file.
+ArgoCD will automatically pull the image artifact from depolyment manifest file whenever new version is updated, and deploy the artifact to kubernetes cluster.
+ArgoCD is a kubernetes controller and it will always try to maintain the state on k8 cluster similar as deployment manifest.
+This is how, I have configured CI-CD.
+
+
